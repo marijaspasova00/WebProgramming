@@ -1,0 +1,45 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Book List</title>
+</head>
+<body>
+<h1>Book List</h1>
+<table>
+    <thead>
+    <tr>
+        <th>Title</th>
+        <th>Author</th>
+        <th>Genre</th>
+        <th>Bookstore</th>
+        <th>Year</th>
+        <th>Edit</th>
+        <th>Delete</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="book : ${books}">
+        <td th:text="${book.title}"></td>
+        <td th:text="${book.author.name}"></td>
+        <td th:text="${book.genre}"></td>
+        <td>
+            <span th:text="${book.bookStore.name}"></span>
+        </td>
+        <td th:text="${book.year}"></td>
+        <td>
+            <a th:href="@{'/edit/' + ${book.id}}">Edit</a>
+        </td>
+        <td>
+            <form th:action="@{'/delete/' + ${book.id}}" method="post">
+                <button type="submit">Delete</button>
+            </form>
+        </td>
+    </tr>
+    </tbody>
+</table>
+<a href="/books/add">Add New Book</a>
+</body>
+</html>
